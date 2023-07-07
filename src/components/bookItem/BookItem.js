@@ -5,13 +5,13 @@ import "./BookItem.css";
 import BookCard from "../bookCard/BookCard";
 import DateRead from "../dateRead/DateRead";
 
-const BookItem = ({ bookTitle, author, dateRead, pageCount }) => {
-  // const [bookTitle, setBookTitle] = useState(title);
+const BookItem = ({ title, author, dateRead, pageCount }) => {
+  const [bookTitle, setBookTitle] = useState(title);
   const [bookAuthor, setBookAuthor] = useState("");
 
   const clickChangeTitleHandler = () => {
     console.log("clicked");
-    // setBookTitle("Actualizado!");
+    setBookTitle("Actualizado!");
   };
 
   return (
