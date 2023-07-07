@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "./BookForm.css";
 
 const BookForm = ({ onBookAdded }) => {
-  const [title, setTitle] = useState("");
+  const [bookTitle, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [dateRead, setDateRead] = useState("");
   const [pageCount, setPageCount] = useState("");
@@ -13,7 +13,7 @@ const BookForm = ({ onBookAdded }) => {
     const timer = setTimeout(() => {
       console.log("Check form");
       setFormValid(
-        title !== "" && author !== "" && pageCount !== "" && dateRead !== ""
+        bookTitle !== "" && author !== "" && pageCount !== "" && dateRead !== ""
       );
     }, 500);
 
@@ -21,7 +21,7 @@ const BookForm = ({ onBookAdded }) => {
       console.log("Cleanup");
       clearTimeout(timer);
     };
-  }, [title, author, pageCount, dateRead]);
+  }, [bookTitle, author, pageCount, dateRead]);
 
   const changeTitleHandler = (event) => {
     setTitle(event.target.value);
@@ -43,11 +43,14 @@ const BookForm = ({ onBookAdded }) => {
     event.preventDefault();
     const newBook = {
       id: Math.random(),
-      title,
-      author,
+      bookTitle,
+      author: {
+        author: author,
+      },
       dateRead: new Date(dateRead),
       pageCount,
     };
+    debugger;
     onBookAdded(newBook);
   };
 

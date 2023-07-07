@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 const Login = ({ loginHandler }) => {
   const [email, setEmail] = useState("");
@@ -34,6 +35,25 @@ const Login = ({ loginHandler }) => {
     setPassword(event.target.value);
   };
 
+  const _loginHandler = () => {
+    const userData = {
+      email: email,
+      password: password,
+    };
+
+    axios
+      .post("http://localhost:8080/usr/login", userData)
+      .then((response) => {
+        console.log("Usuario logueado:", response.data);
+        loginHandler();
+
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.log("Error al loguearse:", error);
+      });
+  };
+
   const signInHandler = () => {
     setRegister(true);
     if (email === "") {
@@ -50,8 +70,8 @@ const Login = ({ loginHandler }) => {
       return;
     }
 
-    loginHandler();
-    navigate("/home");
+    _loginHandler();
+    // navigate("/home");
   };
 
   return (

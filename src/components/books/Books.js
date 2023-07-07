@@ -6,7 +6,7 @@ const Books = ({ books, yearFiltered }) => {
       ? books.map((book) => (
           <BookItem
             key={book.id}
-            title={book.title}
+            bookTitle={book.bookTitle}
             author={book.author}
             pageCount={book.pageCount}
             dateRead={book.dateRead}
@@ -19,7 +19,7 @@ const Books = ({ books, yearFiltered }) => {
           .map((book) => (
             <BookItem
               key={book.id}
-              title={book.title}
+              title={book.bookTitle}
               author={book.author}
               pageCount={book.pageCount}
               dateRead={book.dateRead}
